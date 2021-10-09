@@ -1,0 +1,23 @@
+
+Users 
+Debts 
+Needs 
+Skills
+Turns 
+FindNearbyUsers
+AddDebt
+UpdateDebtState
+FindDebts
+
+A user makes a promise worth $X
+User has credit line with community token 
+
+Settle via future earnings
+
+Settle via skill hours 
+
+Being in a community token gives you greater probability of settling via skill hours 
+
+Buy a token at $x rate to settle they can cash out gives insurance, ability to vote etc? 
+
+
