@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const CopyPlugin = require("copy-webpack-plugin");
 
 const ROOT = path.resolve( __dirname, 'src' );
 const DESTINATION = path.resolve( __dirname, 'dist' );
@@ -51,6 +52,15 @@ module.exports = {
             }
         ]
     },
+
+    plugins: [
+        new CopyPlugin({
+            patterns: [
+                { from: "index.html", to: "index.html" },
+                { from: "style.css", to: "style.css" },
+            ],
+        }),
+    ],
 
     devtool: 'cheap-module-source-map',
     devServer: {}
