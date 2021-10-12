@@ -18,6 +18,7 @@ enableRipple(true);
 cytoscape.use(cola);
 
 const canvas = document.getElementById('cc-demo');
+const logDiv = document.getElementById('transaction_log');
 let cy = null;
 let world = null;
 
@@ -169,6 +170,13 @@ function sleep(ms) {
 var transactions: TransactionRecord[];
 var nextTransactionIdx: number = 0;
 
+async function logTransaction(transaction) {
+    var ele = document.createElement('div');
+    ele.innerHTML = transaction.from + " -> " + transaction.to + "  $" + transaction.amt;
+    logDiv.appendChild(ele);
+}
+
+
 async function advanceSimulation() {
 
     if (nextTransactionIdx === transactions.length) {
@@ -176,8 +184,8 @@ async function advanceSimulation() {
         return false;
     }
 
-    console.log('Adding ' + nextTransactionIdx);
     var next = transactions[nextTransactionIdx++];
+    logTransaction(next);
     world.addPromise(
         next.from,
         next.to,
@@ -186,9 +194,9 @@ async function advanceSimulation() {
     return true;
 }
 
+
 async function runSimulation() {
     transactions = generateTransactionLog(50, networkGrowthRate);
-    console.log(transactions);
     nextTransactionIdx = 0;
 
     cy.layout(layoutCoseOptions).run();
